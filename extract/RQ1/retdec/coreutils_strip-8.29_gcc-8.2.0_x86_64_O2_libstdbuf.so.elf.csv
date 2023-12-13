@@ -1,0 +1,8 @@
+_func_name, asm, assignment, bitwise, branch_case, branch_if, branch_ternary, branch_total, broken_dowhile, cast, comma, cond_depth, fix, goto, if_depth, if_in_loop, invalid_form, invalid_funccall, invalid_ir, invalid_jump, label, loc, local, lol, loop_depth, loop_dowhile, loop_for, loop_total, loop_while, operator, prop_branch_case, prop_branch_if, prop_branch_ternary, prop_loop_dowhile, prop_loop_for, prop_loop_while, ref_direct, ref_structured, strcmp, token, undefined, unimplemented, unknown, unknown_op, 
+entry_point, 0, 16, 0, 0, 5, 0, 5, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 41, 11, 17, 0, 0, 0, 0, 0, 5, 0.0, 1.0, 0.0, 0, 0, 0, 4, 0, 0, 173, 0, 0, 0, 0, 
+function_9c0, 0, 8, 0, 0, 3, 0, 3, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 22, 6, 13, 0, 0, 0, 0, 0, 3, 0.0, 1.0, 0.0, 0, 0, 0, 5, 0, 0, 83, 0, 0, 0, 0, 
+function_a3f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 7, 0, 0, 0, 0, 
+function_a61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 
+function_a9a, 0, 6, 2, 0, 3, 0, 3, 0, 1, 0, 0, 1.0, 0, 1, 0, 0, 0, 0, 0, 0, 32, 3, 13, 0, 0, 1, 1, 1, 12, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 12, 0, 0, 99, 0, 0, 0, 0, 
+function_b09, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 
+function_b0e, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 1, 9, 0, 0, 1, 1, 1, 2, 0, 0, 0, 0.0, 0.0, 1.0, 1, 0, 0, 24, 0, 0, 0, 0, 

@@ -1,0 +1,7 @@
+_func_name, asm, assignment, bitwise, branch_case, branch_if, branch_ternary, branch_total, broken_dowhile, cast, comma, cond_depth, fix, goto, if_depth, if_in_loop, invalid_form, invalid_funccall, invalid_ir, invalid_jump, label, loc, local, lol, loop_depth, loop_dowhile, loop_for, loop_total, loop_while, operator, prop_branch_case, prop_branch_if, prop_branch_ternary, prop_loop_dowhile, prop_loop_for, prop_loop_while, ref_direct, ref_structured, strcmp, token, undefined, unimplemented, unknown, unknown_op, 
+error, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 
+gz_compress, 0, 2, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 26, 4, 10, 0, 0, 1, 1, 1, 2, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0, 0, 0, 84, 0, 0, 0, 0, 
+gz_uncompress, 0, 2, 0, 0, 5, 0, 5, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 24, 4, 13, 0, 0, 1, 1, 1, 3, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0, 0, 0, 84, 0, 0, 0, 0, 
+file_compress, 0, 2, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 26, 3, 9, 0, 0, 0, 0, 0, 4, 0.0, 1.0, 0.0, 0, 0, 0, 0, 0, 0, 95, 0, 0, 0, 0, 
+file_uncompress, 0, 8, 0, 0, 5, 0, 5, 0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 43, 7, 11, 0, 0, 0, 0, 0, 9, 0.0, 1.0, 0.0, 0, 0, 0, 2, 3, 1.0, 150, 0, 0, 0, 0, 
+main_401610, 0, 30, 0, 0, 28, 0, 28, 0, 0, 0, 2, 0.0, 10, 4, 1, 0, 0, 0, 0, 0, 157, 20, 12, 1, 0, 2, 1, 1, 28, 0.0, 1.0, 0.0, 0.5, 0.0, 0.5, 9, 4, 1.0, 414, 0, 0, 0, 0, 
