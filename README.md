@@ -24,7 +24,7 @@ $ ./run.sh
 ```
 Run the run.sh script to generate R2I results for dataset. By running `./run.sh` commands, AST is generated from syntax corrected decompiled code for each decompiler. R2I counts 31 features in AST and generates a relative readability score for the six decompilers. The weight is defined in `src/weight.csv`.
 
-To adjust the weight, enter the desired weight in `src/weight.csv` and run run.sh script.
+To adjust the weight, edit `src/weight.csv` to the desired weight and run run.sh script.
 
 The generated R2I results are placed in the eval/test folder.
 
