@@ -16,7 +16,7 @@ This repository contains the artifact for the R2I metric introduced in the paper
 * Python version 3.8.10
 * Pandas version 2.1.0
 
-### Executing R2I metric
+### Executing R2I Metric
 R2I can be executed by running `run.sh` file.
 ```
 $ git clone $R2I_REPO
@@ -26,8 +26,6 @@ $ ./run.sh
 Run the run.sh script to generate R2I results for dataset. By running `./run.sh` commands, AST is generated from syntax corrected decompiled code for each decompiler.  
 R2I counts 31 features in AST and generates a relative readability score for the six decompilers.  
 The weight is defined in `src/weight.csv`.
-
-To adjust the weight, edit `src/weight.csv` to the desired weight and run run.sh script.
 
 The generated R2I results are placed in the eval/test folder.
 
@@ -44,3 +42,6 @@ The generated R2I results are placed in the eval/test folder.
      retdec  0x402f30    0           9        6       ...        98     0.4551
                   ...                                 ...
 ```
+### Adjusting Feature Weight
+
+To adjust the weight, edit `src/weight.csv` to the desired weight and run run.sh script.
