@@ -1,10 +1,10 @@
 # R2I
-This repository provides the R2I script for the paper "R2I: A Relative Readability Metric for Decompiled Code".
+This repository contains the artifact for the R2I metric introduced in the paper “R2I: A Relative Readability Metric for Decompiled Code.”
 
 ## Structure
 1. dataset/test : Test dataset for each decompiler
     * $DECOMPILER/c : Original decompiled code
-    * $DECOMPILER/json : json file for the original decompiled code, including function start address, end address, etc.
+    * $DECOMPILER/json : JSON file containing information about functions in decompiled code, including their starting and ending addresses
     * $DECOMPILER/syntax_correction : Syntax corrected decompiled code for AST generation
 2. eval/test : R2I metric results for dataset
 3. pycparser : Open-source parser for AST generation
@@ -13,8 +13,9 @@ This repository provides the R2I script for the paper "R2I: A Relative Readabili
 
 ## Getting Started
 ### Prerequisites
-* Python version 3
-* pandas - python library
+* Python version 3.8.10
+* Pandas version 2.1.0
+
 ### Executing R2I metric
 R2I can be executed by running `run.sh` file.
 ```
@@ -22,7 +23,9 @@ $ git clone $R2I_REPO
 $ cd $R2I_REPO
 $ ./run.sh
 ```
-Run the run.sh script to generate R2I results for dataset. By running `./run.sh` commands, AST is generated from syntax corrected decompiled code for each decompiler. R2I counts 31 features in AST and generates a relative readability score for the six decompilers. The weight is defined in `src/weight.csv`.
+Run the run.sh script to generate R2I results for dataset. By running `./run.sh` commands, AST is generated from syntax corrected decompiled code for each decompiler.  
+R2I counts 31 features in AST and generates a relative readability score for the six decompilers.  
+The weight is defined in `src/weight.csv`.
 
 To adjust the weight, edit `src/weight.csv` to the desired weight and run run.sh script.
 
