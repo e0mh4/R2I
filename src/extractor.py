@@ -26,7 +26,6 @@ FEATURES_HDR = [
     'invalid_funccall', 'broken_dowhile',
 ]
 
-# Track target nodes to detect in current context
 INIT_OPTION = {
     'Name': True,
     'Decl': False,
@@ -57,16 +56,12 @@ class Code(c_ast.Node):
         self.scores = []
 
     def show(self):
-        """ Show AST of given code (for possible need)
-        """
         self.ast.show(attrnames=True, nodenames=True)
 
         for (func, score) in self.scores:
             print('\n', func, score)
     
     def extract(self):
-        """ Extract code readability function by function
-        """
         for (order, func) in self.ast.children():
             if (func.__class__.__name__ == 'FuncDef'):
                 score = {
@@ -169,8 +164,6 @@ class Code(c_ast.Node):
         
     @staticmethod
     def walk(node, score, option, role):
-        """ Counts the frequency of features relevant to readability from AST
-        """
         token = node.__class__.__name__
         detect = option.copy()
         
