@@ -30,8 +30,6 @@ class Features():
         self.scores.append(data)
 
     def collect(self, stripped):
-        """ Collect all feature scores in a single bag
-        """
         for decompiler in self.decompilers:
             for filename in os.listdir(decompiler):
                 data = pd.read_csv(f'{decompiler}/{filename}', header=0, delimiter=',')
@@ -41,9 +39,7 @@ class Features():
                     self.process(data, decompiler, filename)
         
         self.scores = pd.concat(self.scores)
-        print('Total function detections:', len(self.scores.index))
         self.scores.drop_duplicates(inplace=True)
-        print('After dropping duplicates:', len(self.scores.index))
 
     def save(self, experiment):
         target_name = os.path.join(os.path.dirname(sys.path[0]), 'eval', experiment, 'aggregated.csv')
@@ -51,20 +47,6 @@ class Features():
             f.write('_decompiler,_binary,_func_name,'+','.join(sorted(FEATURES_HDR[1:]))+',\n')
             self.scores.sort_values(by=['_binary','_func_name'], inplace=True)
             self.scores.to_csv(f, header=False, index=False)
-
-    def show_stats(self):
-        count = self.scores.iloc[:, :3]
-
-        print('\nDetections per # of decompilers:')
-        print(count.groupby(by=['_binary', '_func_name']).count()['_decompiler'].value_counts())
-        
-        count['rate'] = count.groupby(by=['_binary', '_func_name'])['_decompiler'].transform('count')
-        for decompiler in self.decompilers:
-            dec_count = count.loc[count['_decompiler'] == decompiler]
-            print(f'\nTotal detections of decompiler {decompiler}:', len(dec_count.index))
-        
-            print(f'Detect rate of decompiler {decompiler}:')
-            print(dec_count.groupby(by=['rate']).count()['_decompiler'] / len(dec_count.index))
 
 
 if __name__ == '__main__':
@@ -81,4 +63,4 @@ if __name__ == '__main__':
     f = Features(args.targets)
     f.collect(args.stripped)
     f.save(args.experiment)
-    f.show_stats()
+

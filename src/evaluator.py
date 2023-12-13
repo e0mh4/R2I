@@ -164,12 +164,6 @@ class R2I():
         print("[+] Successfully saved feature & r2i values: r2i.csv")
         f.close()
         
-        with open('rank-func.csv', 'w') as r:
-            R_col_names = ['binary', 'address'] + self.targets
-            self.R = pd.DataFrame(self.R, columns=R_col_names)
-            self.R.to_csv(r, index=False)
-        print("[+] Successfully saved ranks: rank.csv")
-        
         for bin in self.B.keys():
             if not self.B[bin]:
                 continue
@@ -188,3 +182,5 @@ if __name__ == "__main__":
     r2i = R2I(args.targets)
     r2i.collect_features(args.weight)
     r2i.evaluate()
+
+    os.remove('aggregated.csv')

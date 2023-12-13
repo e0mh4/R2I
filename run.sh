@@ -9,8 +9,7 @@ fi
 BASE=$(cd $(dirname $0) && pwd)
 
 for d in ${decompilers[*]}; do
-    cd "$BASE/dataset/$experiment/$d" && mkdir -p pp
-    python3 serializer.py
+    cd "$BASE/dataset/$experiment/$d"
     mkdir -p "$BASE/extract/$experiment/$d"
     logger="$BASE/extract/$experiment/$d.log" && rm -f $logger
     
@@ -23,18 +22,15 @@ for d in ${decompilers[*]}; do
         ((i=i+1))
         echo -e "\n==$d== $i/$COUNT... Detected $file"
         if [ "$file" ]; then
-            file=${file:2} # slice leading "c/"
+            file=${file:2}
 
             python3 $BASE/src/extractor.py -s -p "$experiment/$d" $file 2>&1 | tee -a $logger
             wait && echo "[+] Feature scores extracted in csv"
         fi
     done
 
-    if [ -s $logger ]; then
-        echo -e "\n[-] Error occured while processing $d; check log file"
-    else
-        echo -e "\n[+] No error occurred while processing $d"
-    fi
+    echo -e "\n[+] finish extract"
+
     rm -f yacctab.py lextab.py
 done
 
@@ -45,6 +41,8 @@ if [ $# -eq 0 ]; then
     cd "../eval/$experiment" && mkdir -p "bin"
     
     python3 $BASE/src/evaluator.py -t ${decompilers[*]} -w $weight_version
-    python3 $BASE/src/ranker.py -t ${decompilers[*]}
     python3 $BASE/src/mean.py $experiment -t ${decompilers[*]}
+
+    rm -r $BASE/extract
+    rm -r $BASE/eval/$experiment/bin
 fi

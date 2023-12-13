@@ -8,17 +8,6 @@ from pycparser import c_ast, parse_file
 PREDEF = {
     'excluded': ['FileAST', 'Typename', 'TypeDecl', 'IdentifierType', 'FuncDef'],
     'loops': ['For', 'While', 'DoWhile'],
-    # 'arguments': ['ID', 'Constant', 'FuncCall'],
-    # 'functions_flexible': {
-    #     'printf': 1, 'fprintf': 2, 'scanf': 2, 'fscanf': 3, 'open': 2, 
-    # },
-    # 'functions_strict': {
-    #     'puts': 1, 'fputs': 2, 'gets': 1, 'fgets': 3,
-    #     'malloc': 1, 'calloc': 2, 'free': 1, 'memset': 3, 'exit': 1,
-    #     'strcmp': 2, 'strncmp': 3, 'strcpy': 2, 'strncpy': 3,
-    #     'fopen': 2, 'close': 1, 'fclose': 1, 'fseek': 3, 'ftell': 1,
-    #     'write': 3, 'fwrite': 4, 'read': 3, 'fread': 4
-    # },
     'mem_functions': ['scanf', 'gets', 'fgets', 'free', 'memset', 'write', 'fwrite', 'read', 'fread']
 }
 
@@ -45,9 +34,6 @@ INIT_OPTION = {
     'If': False,
     'FuncID': False,
     'ExprList': False,
-    # 'ArgsList': True,
-    # 'ArgsListFlex': '',
-    # 'ArgsListStrict': '',
     'BinaryOp': False,
     'Cond': 0,
     'IfNested': 0,
@@ -58,8 +44,6 @@ INIT_OPTION = {
     'FuncCall': False,
     'FuncCmpU': False,
     'FuncCmpB': False,
-    # 'arg': False,
-    # 'argLen': 0
 }
 
 INVALID_TYPES = ['undefined', 'code', 'passwd', 'BADSPACEBASE', 'unkint', 'unkbyte10', '_UNKNOWN']
@@ -85,7 +69,6 @@ class Code(c_ast.Node):
         """
         for (order, func) in self.ast.children():
             if (func.__class__.__name__ == 'FuncDef'):
-                # Initialize function score
                 score = {
                     'loc': 0,
                     'lol': 0,
@@ -104,7 +87,6 @@ class Code(c_ast.Node):
                     'cond_depth': [0],
                     'if_depth': [0],
                     'loop_depth': [0],
-                    # 'long_arg': 0,
                     'prop_branch': {'if': 0, 'case': 0, 'ternary': 0},
                     'strcmp_': {'bare': 0, 'not': 0},
                     'bitwise': 0,
@@ -121,15 +103,11 @@ class Code(c_ast.Node):
                     'invalid_ir': 0,
                     'invalid_funccall': 0,
                     'broken_dowhile': 0,
-                    # 'invalid_argument': 0,
-                    # 'decompile_crash': 0
                 }
-                # Extract code readbility features
                 Code.walk(func, score, INIT_OPTION, order)
                 
                 funcName = score.pop('_func_name')
                 if self.catalog is not None:
-                    # Unify function naming convention for future parsing
                     if funcName == 'nullsub_1':
                         funcName = 'null_'
                     elif re.search(r'^(thunk_.+|j_.+)', funcName):
@@ -139,7 +117,6 @@ class Code(c_ast.Node):
                     elif funcName.startswith('_obstack'):
                         funcName = funcName[1:]
 
-                    # Retreive function metadata from JSON
                     funcCode = None
                     for func in self.catalog:
                         if func['funcName'].startswith(funcName):
@@ -165,8 +142,7 @@ class Code(c_ast.Node):
                         lines = [x for x in funcCode.split('\n') if filterOut(x)]
                         score['loc'] = len(lines)
                         score['lol'] = max(len(re.split('[\s,:;\(\)\{\}]+', line.split('//', 1)[0].split('/*', 1)[0].strip())) for line in lines)
-                    
-                    # Process raw feature data for better evaluation
+
                     score['label'] = len(score['label']['defined'] - score['label']['used'])
                     score['cond_depth'] = max(score['cond_depth'])
                     score['if_depth'] = max(score['if_depth'])
@@ -191,18 +167,6 @@ class Code(c_ast.Node):
                 self.functions.append(funcName)
                 self.scores.append((funcName, score))
         
-        # if self.catalog is not None:
-        #     if self.catalog:
-        #         malfunctions = []
-
-        #         pos = 0 if self.decompiler != 'radare2' else 4
-        #         for func in self.catalog:
-        #             if not any(funcName in func['decompiledFuncCode'].split('\n')[pos] for funcName in self.functions):
-        #                 malfunctions.append(func['funcName'])
-        #         if malfunctions:
-        #             print('[-] some functions are not detected in %s:' % self.filename, file=sys.stderr)
-        #             print('\t', malfunctions, file=sys.stderr)
-
     @staticmethod
     def walk(node, score, option, role):
         """ Counts the frequency of features relevant to readability from AST
@@ -211,10 +175,8 @@ class Code(c_ast.Node):
         detect = option.copy()
         
         if token not in PREDEF['excluded']:
-            # Overall complexity of code
             score['token'] += 1
 
-            # Function name retrieval
             if detect['Name'] and token == 'Decl':
                 score['_func_name'] = getattr(node, 'name', role)
                 detect['Name'] = option['Name'] = False
@@ -224,29 +186,23 @@ class Code(c_ast.Node):
 
                 if role == 'iffalse':
                     score['branch']['if'] += 1
-                    
-                    # Depth of nested if statements
+
                     score['if_depth'].append(detect['IfNested'])
-            
-            # Local variables
+
             elif detect['Decl'] and token == 'Decl':
                 score['local'] += 1
                 detect['Init'] = True
 
-            # Initilizations
             elif detect['Init'] and role == 'init':
                 score['assignment'] += 1
 
-            # Goto usages
             elif token == 'Goto':
                 score['goto'] += 1
 
-            # Unused labels
                 score['label']['used'].add(getattr(node, 'name', ''))
             elif token == 'Label':
                 score['label']['defined'].add(getattr(node, 'name', ''))
 
-            # Explicit nested castings
             elif token == 'Cast':
                 if detect['Cast']:
                     if option['CastNested']:
@@ -255,29 +211,24 @@ class Code(c_ast.Node):
                 else:
                     detect['Cast'] = True
 
-            # Portion of different kinds of loops to one another
             elif token in PREDEF['loops']:
                 score['loop'][token.lower()] += 1
                 detect['If'] = True
 
-                # Nested degrees of Loop statements
                 detect['LoopNested'] += 1
                 if detect['LoopNested'] > score['loop_depth'][-1]:
                     score['loop_depth'][-1] += 1
                 else:
                     score['loop_depth'].append(detect['LoopNested'])
-            
-            # Portion of switch statements to if's
+
             elif token == 'If':
                 score['branch']['if'] += 1
                 detect['BinaryOp'] = True
 
-                # If usages inside loop without loop condition
                 if detect['If']:
                     score['if_in_loop'] += 1
                     option['If'] = detect['If'] = False
-                
-                # Nested degrees of If statements
+
                 if role != 'iffalse':
                     detect['IfNested'] += 1
                 if detect['IfNested'] > score['if_depth'][-1]:
@@ -287,28 +238,23 @@ class Code(c_ast.Node):
             
             elif token in ['Case', 'Default']:
                 score['branch']['case'] += 1
-            
-            # Ternary operation usages
+
             elif token == 'TernaryOp':
                 score['branch']['ternary'] += 1
                 score['operator'] += 1
 
-            # Index and dot/arrow operators
             elif token in ['ArrayRef', 'StructRef']:
                 score['ref']['structured'] += 1
 
             elif token == 'UnaryOp':
                 op = getattr(node, 'op', '')
 
-                # Dereferences
                 if op == '*':
                     score['ref']['direct'] += 1
-                
-                # References
+
                 elif op == '&' and detect['MemRef']:
                     score['ref']['direct'] += 1
 
-                # Prefixes and postfixes
                 elif op in ['p++', 'p--']:
                     score['fix']['pre'] += 1
                     score['operator'] += 1
@@ -320,7 +266,6 @@ class Code(c_ast.Node):
                     detect['FuncCmpU'] = True
                     score['operator'] += 1
                 
-                # Bitwise calculations
                 elif op == '~':
                     score['bitwise'] += 1
                     score['operator'] += 1
@@ -329,7 +274,6 @@ class Code(c_ast.Node):
                 score['operator'] += 1
                 op = getattr(node, 'op', '')
 
-                # Bitwise calculations (masking, shift)
                 if op in ['&', '|', '^', '<<', '>>']:
                     score['bitwise'] += 1
                 
@@ -340,14 +284,12 @@ class Code(c_ast.Node):
                     detect['FuncCall'] = True
 
             elif token == 'Assignment':
-                # Assignments
                 score['assignment'] += 1
 
                 op = getattr(node, 'op', '')
                 if op != '=':
                     score['operator'] += 1
-                    
-                    # Bitwise calculations
+
                     if op in ['&=', '|=', '^=', '<<=', '>>=']:
                         score['bitwise'] += 1
 
@@ -355,22 +297,15 @@ class Code(c_ast.Node):
                 detect['FuncID'] = True
                 detect['ExprList'] = False
 
-                # """refer invalid_argument"""
-                # if (len(node.children()) == 1):
-                #     detect['ArgsList'] = False
-
             elif detect['FuncID'] and token == 'ID' and role == 'name':
                 name = getattr(node, 'name', '')
-                
-                # Function call via its address
+
                 if name == 'invalid_funccall':
                     score['invalid_funccall'] += 1
 
-                # Inline assembly usages
                 elif '__asm' in name:
                     score['asm'] += 1
 
-                # Portion of "!strcmp" compared to "strcmp"
                 elif name in ['strcmp', 'strncmp']:
                     if detect['FuncCmpU']:
                         score['strcmp_']['not'] += 1
@@ -378,58 +313,20 @@ class Code(c_ast.Node):
                         score['strcmp_']['bare'] += 1
                     else:
                         option['FuncCmpB'] = True
-                    
-                    # """refer invalid_argument"""
-                    # detect['ArgsListStrict'] = name
                 
                 elif name in PREDEF['mem_functions']:
                     option['MemRef'] = False
                 option['FuncID'] = False
             
-            # """Not relevant to readability"""
-            #     elif name in PREDEF['functions_flexible'].keys():
-            #         option['ArgsListFlex'] = name
-
-            #         # Invalid number of arguments for basic functions
-            #         if not detect['ArgsList']:
-            #             score['invalid_argument'] += 1
-
-            #         if name in ['scanf', 'fscanf']:
-            #             option['MemRef'] = False
-
-            #     elif name in PREDEF['functions_strict'].keys():
-            #         option['ArgsListStrict'] = name
-
-            #         # Invalid number of arguments for basic functions
-            #         if not detect['ArgsList']:
-            #             score['invalid_argument'] += 1
-            #         if name in PREDEF['mem_functions']:
-            #             option['MemRef'] = False
-
-            # elif role == 'args' and token == 'ExprList':
-            #     detect['arg'] = True
-
-            #     # Invalid number of arguments for basic functions
-            #     name = detect['ArgsListStrict'] + detect['ArgsListFlex']
-            #     if detect['ArgsListFlex']:
-            #         if len(node.children()) < PREDEF['functions_flexible'][name]:
-            #             score['invalid_argument'] += 1
-            #     elif detect['ArgsListStrict']:
-            #         if len(node.children()) != PREDEF['functions_strict'][name]:
-            #             score['invalid_argument'] += 1
-
-            # Fixed grammar errors detected during preprocessing
             elif token == 'ID':
                 name = getattr(node, 'name', '').lower()
                 if name in score.keys():
                     score[name] += 1
-            
-            # Comma operator usages inside conditions
+
             elif detect['ExprList'] and token == 'ExprList':
                 score['comma'] += 1
                 detect['ExprList'] = False
         
-        # Type detection failures
         if token == 'IdentifierType':
             types = getattr(node, 'names', [])
             for _type in types:
@@ -452,8 +349,7 @@ class Code(c_ast.Node):
             child_op = getattr(child, 'op', '')
             if role == 'cond[and][or]' and child_op not in ['&&', '||']:
                 detect['Cond'] += 1
-            
-            # Portion of "strcmp() == 0" compared to "strcmp() != 0"
+
             elif detect['FuncCmpB'] and token == 'BinaryOp':
                 if child.__class__.__name__ == 'FuncCall':
                     continue
@@ -464,24 +360,10 @@ class Code(c_ast.Node):
                     score['strcmp_']['not'] += 1
                 else:
                     score['strcmp_']['bare'] += 1
-
-        # """Not broadly applicable"""
-        #     if role == 'args' and token == 'ExprList' and detect['argLen'] > 3:
-        #         score['long_arg'] += 1
-        #         detect['argLen'] = 0
-        # 
-        #     # Complex argument usages
-        #     elif detect['arg']:
-        #         if (child.__class__.__name__ in PREDEF['arguments']):
-        #             detect['argLen'] += 1
-                            
-        # if detect['arg']:
-        #     option['argLen'] = detect['argLen']
         
         if role == 'cond[and][or]':
             option['Cond'] = detect['Cond']
         
-        # Number of conditions in If statements
         elif token == 'If':
             score['cond_depth'].append(detect['Cond'])
         
@@ -489,13 +371,11 @@ class Code(c_ast.Node):
             option['FuncCmpB'] = detect['FuncCmpB']
     
     def save(self, path):
-        # Write a header for a csv
         def _write_hdr(f):
             for feature in sorted(FEATURES_HDR):
                 f.write('%s, ' % feature)
             f.write('\n')
 
-        # We do believe an extension is present in a file
         target_name = os.path.join('extract', path, self.filename[:-1]+'csv')
         with open(target_name, "w") as f:
             _write_hdr(f)
@@ -510,7 +390,7 @@ class Code(c_ast.Node):
                 f.write('\n')
 
 def extract(path, filename, debug, save):
-    target_name = os.path.join('dataset', path, 'pp', filename) if not debug else filename
+    target_name = os.path.join('dataset', path, 'syntax_correction', filename) if not debug else filename
     ast = parse_file(target_name, use_cpp=True,
             cpp_path='gcc',
             cpp_args=['-E', r'-Ipycparser/utils/fake_libc_include'])

@@ -4,8 +4,6 @@ import pandas as pd
 import argparse
 
 if __name__ == '__main__':
-    """ Calculate Mean values of R2I per each binary
-    """
     parser = argparse.ArgumentParser()
     parser.add_argument('experiment', type=str)
     parser.add_argument('-t', '--targets', nargs='+', required=True,
@@ -23,21 +21,18 @@ if __name__ == '__main__':
         data.append(b)
     data = pd.concat(data, axis=0)
 
-    # Calculate mean values of r2i grouped by target and binary
     index = data.filter(['decompiler', 'binary'])
     data = index.join(data.groupby(by=['decompiler', 'binary'])['r2i'].mean(), on=['decompiler', 'binary'])
     data = data.drop_duplicates()
     with open(f'../mean.csv', 'w') as f:
         data.to_csv(f, index=False)
 
-    # Calculate ranks of targets based on mean values
     ranks = []
     for i in range(len(data) // 6):
         i *= 6
         ranks.extend(list(data.iloc[i:i+6, 2].rank(method='min', ascending=False)))
     data['rank'] = ranks
-    
-    # Save altogether ranks of mean values
+
     ranked = {}
     for decompiler in targets:
         ranked[decompiler] = [0] * (maxr)
@@ -47,3 +42,4 @@ if __name__ == '__main__':
     with open(f'../rom.csv', 'w') as f:
         ranked.to_csv(f, index=False)
     print(ranked)
+    os.remove('../rom.csv')
