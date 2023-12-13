@@ -184,9 +184,6 @@ class Code(c_ast.Node):
                         score['prop_branch']['if'] = score['branch']['if'] / score['branch']['total']
                         score['prop_branch']['case'] = score['branch']['case'] / score['branch']['total']
                         score['prop_branch']['ternary'] = score['branch']['ternary'] / score['branch']['total']
-                    
-                    #total_strcmps = score['strcmp_']['bare'] + score['strcmp_']['not']
-                    #score['strcmp_'] = 0 if total_strcmps == 0 else score['strcmp_']['not'] / total_strcmps
 
                     total_fixes = score['fix']['pre'] + score['fix']['post']
                     score['fix'] = 0 if total_fixes == 0 else score['fix']['pre'] / total_fixes
