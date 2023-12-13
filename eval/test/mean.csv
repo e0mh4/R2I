@@ -1,0 +1,7 @@
+decompiler,binary,r2i
+angr,coreutils_strip-8.29_gcc-8.2.0_x86_64_O2_b2sum.elf,0.5120173878104736
+bn,coreutils_strip-8.29_gcc-8.2.0_x86_64_O2_b2sum.elf,0.5492570660399156
+ghidra,coreutils_strip-8.29_gcc-8.2.0_x86_64_O2_b2sum.elf,0.5212137663714417
+ida,coreutils_strip-8.29_gcc-8.2.0_x86_64_O2_b2sum.elf,0.6115038692331705
+radare2,coreutils_strip-8.29_gcc-8.2.0_x86_64_O2_b2sum.elf,0.45250393827713403
+retdec,coreutils_strip-8.29_gcc-8.2.0_x86_64_O2_b2sum.elf,0.5370406286130562
