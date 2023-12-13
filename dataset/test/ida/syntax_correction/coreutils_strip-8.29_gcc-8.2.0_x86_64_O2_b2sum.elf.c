@@ -147,7 +147,7 @@ __int64 __fastcall main(unsigned int a1, char **a2, char **a3)
   setlocale(6, "");
   bindtextdomain(
     "coreutils",
-    "/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale");
+    "/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale");
   textdomain("coreutils");
   sub_409D30(sub_405670);
   setvbuf(stdout, 0LL, 1, 0LL);
@@ -9092,7 +9092,7 @@ LABEL_26:
       v14 = 115LL;
       v9 = 101LL;
       v10 = 100LL;
-      v7 = "/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
+      v7 = "/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
     }
     v15 = (char *)malloc(v14);
     v13 = v15;

@@ -7,7 +7,6 @@ int INVALID_GOTO;
 int INVALID_CASE;
 int INVALID_COLON;
 int INVALID_NORETURN;
-int crash_skku;
 int INVALID_FORM;
 typedef __int128 int128_t;
 typedef unsigned __int128 uint128_t;

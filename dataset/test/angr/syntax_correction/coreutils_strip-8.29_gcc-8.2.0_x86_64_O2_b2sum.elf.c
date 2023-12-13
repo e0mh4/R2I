@@ -6123,7 +6123,7 @@ undefined v10;  // rbx
             v13 = 115;
             v14 = 101;
             v16 = 100;
-            v15 = "/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
+            v15 = "/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
         }
         if (*(v15) == 0 || v15 == 0 || v15[v11 + -1] != 47 && v11 != 0)
         {

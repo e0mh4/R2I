@@ -32,7 +32,7 @@ int32_t main (int32_t argc, char ** argv) {
     ebx = 0xffffffff;
     fcn_004057f0 (*(rsi));
     setlocale (6, 0x40c53f);
-    bindtextdomain (0x409e1a, "/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale");
+    bindtextdomain (0x409e1a, "/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale");
     textdomain (0x409e1a, rsi);
     edi = 0x405670;
     fcn_00409d30 ();
@@ -7636,7 +7636,7 @@ label_2:
 label_19:
         r12d = 0x65;
         r14d = 0x64;
-        r13d = "/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
+        r13d = "/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
 label_14:
         rax = malloc (0x73);
     } while (rax == 0);

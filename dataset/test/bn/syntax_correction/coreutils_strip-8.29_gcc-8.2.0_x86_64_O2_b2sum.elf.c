@@ -446,7 +446,7 @@ int32_t main(int32_t argc, char** argv, char** envp)
     void var_158;
     char var_150;
     setlocale(6, &data_40c524[0x1b], rdx, rcx, r8, r9, var_158, var_150);
-    bindtextdomain("coreutils", "/home/dongkwan/data/scripts/gnu_…");
+    bindtextdomain("coreutils", "/home/user/data/scripts/gnu_…");
     textdomain("coreutils");
     sub_409d30(sub_405670);
     setvbuf(stdout, nullptr, 1, 0);
@@ -7906,7 +7906,7 @@ char* sub_409750()
             rdi_7 = 0x73;
             r12_1 = 0x65;
             r14_1 = 0x64;
-            r13_1 = "/home/dongkwan/data/scripts/gnu_…";
+            r13_1 = "/home/user/data/scripts/gnu_…";
         }
         char* rbp_3;
         if ((rax_6 != 0 && *rax_6 != 0))

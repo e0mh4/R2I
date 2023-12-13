@@ -608,7 +608,7 @@ int sub_407c10()
     strlen(v3);
 }
 
-int sub_403680() { crash_skku_timeout;
+int sub_403680() {
 }
 int init()
 {
@@ -1888,7 +1888,7 @@ int sub_407290()
     return sub_406bc0();
 }
 
-int sub_407b40() { crash_skku;
+int sub_407b40() {
 }
 int sub_407be0()
 {
@@ -2996,7 +2996,7 @@ int sub_4070a0()
 {
 }
 
-int sub_402f28() { crash_skku;
+int sub_402f28() { 
 }
 int sub_407250()
 {
@@ -5878,7 +5878,7 @@ int sub_407d70()
     __assert_fail(); /* do not return */
 }
 
-int sub_407ab0() { crash_skku;
+int sub_407ab0() {
 }
 int sub_408840()
 {
@@ -6111,7 +6111,7 @@ int sub_409750()
             v13 = 115;
             v14 = 101;
             v16 = 100;
-            v15 = "/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
+            v15 = "/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
         }
         if (*(v15) == 0 || v15 == 0 || v15[v11 + -1] != 47 && v11 != 0)
         {

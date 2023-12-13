@@ -6549,7 +6549,7 @@ char * FUN_00409750(void)
     sVar5 = 0x65;
     __n = 100;
     pcVar7 = 
-    "/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib"
+    "/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib"
     ;
 LAB_00409875:
     __file = (char *)malloc(sVar6);

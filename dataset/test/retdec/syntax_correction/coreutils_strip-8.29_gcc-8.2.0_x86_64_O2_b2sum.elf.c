@@ -42,10 +42,10 @@ int64_t function_401b20(int64_t a1, int64_t a2, int64_t a3, int64_t a4) {
     int64_t v2 = &v1; // 0x401b3e
     function_4057f0(a2);
     setlocale(LC_ALL, (char *)&g11);
-    bindtextdomain("coreutils", "/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale");
+    bindtextdomain("coreutils", "/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale");
     textdomain("coreutils");
-    function_409d30(0x405670, (int64_t)"/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale", a3);
-    setvbuf(g30, (char *)((int32_t)"/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale" ^ (int32_t)"/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale"), 1, 0);
+    function_409d30(0x405670, (int64_t)"/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale", a3);
+    setvbuf(g30, (char *)((int32_t)"/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale" ^ (int32_t)"/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/share/locale"), 1, 0);
     char v3 = 0; // 0x401b99
     int64_t v4 = 0xffffffff; // 0x401b99
     int64_t v5 = (int64_t)&g11; // 0x401b99
@@ -8984,7 +8984,7 @@ int64_t function_409750(void) {
         env_val = getenv("CHARSETALIASDIR");
         size = 115;
         v4 = 101;
-        v5 = (int64_t)"/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
+        v5 = (int64_t)"/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
         v6 = 100;
         if (env_val == NULL) {
             goto lab_0x409875;
@@ -8992,7 +8992,7 @@ int64_t function_409750(void) {
             // 0x40981a
             size = 115;
             v4 = 101;
-            v5 = (int64_t)"/home/dongkwan/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
+            v5 = (int64_t)"/home/user/data/scripts/gnu_packages/coreutils/coreutils-8.29_gcc-8.2.0_x86_64_O2_debug/gogo/lib";
             v6 = 100;
             if (*env_val == 0) {
                 goto lab_0x409875;
