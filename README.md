@@ -1,6 +1,9 @@
 # R2I
 This repository contains the artifact for the R2I metric introduced in the paper “R2I: A Relative Readability Metric for Decompiled Code.”
 
+## Environment
+R2I is verified in Linux 20.04.
+
 ## Structure
 1. dataset/test : Test dataset for each decompiler
     * $DECOMPILER/c : Original decompiled code
