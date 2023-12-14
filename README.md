@@ -42,7 +42,7 @@ The results can be found in the eval/test folder.
      retdec   0.5370
 ```
 
-`r2i.csv` shows the R2I score and number of count features for each function.
+`r2i.csv` shows the R2I scores and number of occurrences of each feature within each function.
 ```
  decompiler   address  ams  assignment  bitwise               token        R2I
                   ...                                 ...
