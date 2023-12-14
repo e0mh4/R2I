@@ -26,8 +26,8 @@ $ git clone $R2I_REPO
 $ cd $R2I_REPO
 $ ./run.sh
 ```
-By running `./run.sh` commands, Abstract Syntax Tree (AST) is generated from syntax corrected decompiled code for each decompiler.  
-R2I counts 31 features from AST and generates a relative readability score for the six decompilers.  
+By running `./run.sh` commands, Abstract Syntax Trees (ASTs) are generated from syntax corrected decompiled code for each decompiler.  
+R2I counts 31 features from ASTs and generates a relative readability score for the six decompilers.  
 The results can be found in the eval/test folder.
 
 ### Result
